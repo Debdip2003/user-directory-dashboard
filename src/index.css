@@ -1,1 +1,88 @@
 @import "tailwindcss";
+
+/* Custom Color Schemes */
+:root {
+  /* Light Theme Colors */
+  --bg-primary: #f0f9ff;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --text-primary: #1e40af;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --border-color: #dbeafe;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --gradient-from: #eff6ff;
+  --gradient-to: #dbeafe;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Colors */
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-card: rgba(31, 41, 55, 0.9);
+  --text-primary: #dbeafe;
+  --text-secondary: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-color: #374151;
+  --accent-color: #3b82f6;
+  --accent-hover: #60a5fa;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --gradient-from: #111827;
+  --gradient-to: #1f2937;
+}
+
+/* Apply custom colors to elements */
+body {
+  background: linear-gradient(135deg, var(--gradient-from), var(--gradient-to));
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+/* Custom utility classes */
+.bg-custom-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-custom-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.bg-custom-card {
+  background-color: var(--bg-card);
+}
+
+.text-custom-primary {
+  color: var(--text-primary);
+}
+
+.text-custom-secondary {
+  color: var(--text-secondary);
+}
+
+.text-custom-muted {
+  color: var(--text-muted);
+}
+
+.border-custom {
+  border-color: var(--border-color);
+}
+
+.bg-custom-accent {
+  background-color: var(--accent-color);
+}
+
+.bg-custom-accent-hover:hover {
+  background-color: var(--accent-hover);
+}
+
+.shadow-custom {
+  box-shadow: 0 25px 50px -12px var(--shadow-color);
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}

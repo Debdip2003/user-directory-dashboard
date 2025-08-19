@@ -12,29 +12,29 @@ function UserDetail({ user, onClose }) {
       onClick={onClose}
     >
       <div
-        className="w-11/12 max-w-md sm:max-w-lg bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-2xl relative border border-blue-100 dark:border-gray-700"
+        className="w-11/12 max-w-md sm:max-w-lg bg-custom-card p-6 sm:p-8 rounded-2xl shadow-custom relative border border-custom"
         onClick={(e) => e.stopPropagation()}
       >
         <img
           src={user.image}
           alt={user.firstName}
-          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 border-4 border-blue-200 dark:border-blue-400 shadow"
+          className="w-20 h-20 sm:w-24 sm:h-24 rounded-full mx-auto mb-4 border-4 border-custom shadow"
         />
-        <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 text-blue-700 dark:text-blue-200">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-2 text-custom-primary">
           {user.firstName} {user.lastName}
         </h2>
-        <p className="text-center text-gray-600 dark:text-gray-300 mb-4 break-words">
+        <p className="text-center text-custom-muted mb-4 break-words">
           Email: {user.email}
         </p>
-        <p className="text-center text-gray-600 dark:text-gray-300 mb-4">
+        <p className="text-center text-custom-muted mb-4">
           Age: {user.age} • {user.gender}
         </p>
-        <p className="text-center text-gray-600 dark:text-gray-300 mb-4">
+        <p className="text-center text-custom-muted mb-4">
           Company: {user.company?.name}
         </p>
         <button
           onClick={onClose}
-          className="block mx-auto mt-2 px-6 sm:px-8 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 transition-colors font-semibold shadow"
+          className="block mx-auto mt-2 px-6 sm:px-8 py-2 bg-custom-accent bg-custom-accent-hover text-white rounded-lg transition-colors font-semibold shadow"
         >
           Close
         </button>
@@ -52,11 +52,11 @@ function UserDetailPage() {
   if (!user) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] p-4">
-        <div className="text-lg sm:text-xl text-gray-500 mb-4">
+        <div className="text-lg sm:text-xl text-custom-muted mb-4">
           User not found.
         </div>
         <button
-          className="px-5 sm:px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          className="px-5 sm:px-6 py-2 bg-custom-accent bg-custom-accent-hover text-white rounded-lg"
           onClick={() => navigate("/")}
         >
           Back to List
@@ -71,12 +71,12 @@ function UserDetailPage() {
         <img
           src={user.image}
           alt={user.firstName}
-          className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 border-4 border-blue-200 dark:border-blue-400 shadow"
+          className="w-24 h-24 sm:w-32 sm:h-32 rounded-full mx-auto mb-4 border-4 border-custom shadow"
         />
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-3 text-blue-700 dark:text-blue-200">
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-3 text-custom-primary">
           {user.firstName} {user.lastName}
         </h2>
-        <div className="space-y-2 text-center text-gray-600 dark:text-gray-300">
+        <div className="space-y-2 text-center text-custom-muted">
           <p>Email: {user.email}</p>
           <p>
             Age: {user.age} • {user.gender}
@@ -87,7 +87,7 @@ function UserDetailPage() {
         </div>
         <button
           onClick={() => navigate("/")}
-          className="block mx-auto mt-6 px-6 sm:px-8 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 transition-colors font-semibold shadow"
+          className="block mx-auto mt-6 px-6 sm:px-8 py-2 bg-custom-accent bg-custom-accent-hover text-white rounded-lg transition-colors font-semibold shadow"
         >
           Back to List
         </button>
@@ -118,11 +118,8 @@ function App() {
   }, [favorites]);
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    // Set data-theme attribute on document element
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   const toggleFavorite = (userId) => {
@@ -141,12 +138,12 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center py-6 sm:py-8 transition-colors px-3 sm:px-4">
-      <div className="w-full max-w-4xl bg-white/90 dark:bg-gray-900 shadow-2xl rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-blue-100 dark:border-gray-700 relative transition-colors">
+    <div className="min-h-screen flex items-center justify-center py-6 sm:py-8 px-3 sm:px-4">
+      <div className="w-full max-w-4xl bg-custom-card shadow-custom rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-custom relative">
         {/* Header row with theme toggle to avoid overlap */}
         <div className="flex items-center justify-end mb-4 sm:mb-6">
           <button
-            className="px-3 py-1 text-xs sm:text-sm rounded-full bg-blue-100 dark:bg-gray-700 text-blue-700 dark:text-gray-200 font-semibold shadow hover:bg-blue-200 dark:hover:bg-gray-600 transition-colors"
+            className="px-3 py-1 text-xs sm:text-sm rounded-full bg-custom-secondary text-custom-primary font-semibold shadow hover:bg-custom-accent hover:text-white transition-colors"
             onClick={() => dispatch(toggleTheme())}
           >
             {theme === "dark" ? "🌙 Dark" : "☀️ Light"}
@@ -157,7 +154,7 @@ function App() {
             path="/"
             element={
               <>
-                <h1 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-center text-blue-700 dark:text-blue-200 drop-shadow">
+                <h1 className="text-2xl sm:text-3xl font-extrabold mb-6 sm:mb-8 text-center text-custom-primary drop-shadow">
                   User Directory Dashboard
                 </h1>
                 <input
@@ -165,23 +162,23 @@ function App() {
                   placeholder="Search by name or email..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="w-full p-2.5 sm:p-3 mb-5 sm:mb-6 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 dark:bg-gray-800 placeholder:text-blue-300 dark:placeholder:text-gray-500 text-sm sm:text-base text-gray-900 dark:text-gray-100 transition-colors"
+                  className="w-full p-2.5 sm:p-3 mb-5 sm:mb-6 border border-custom rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-accent bg-custom-secondary placeholder:text-custom-muted text-sm sm:text-base text-custom-secondary transition-colors"
                 />
                 {loading && (
                   <div className="flex justify-center items-center py-8">
                     <div className="relative">
-                      <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin"></div>
+                      <div className="w-12 h-12 border-4 border-custom border-t-custom-accent rounded-full animate-spin"></div>
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-6 h-6 bg-blue-500 rounded-full animate-pulse"></div>
+                        <div className="w-6 h-6 bg-custom-accent rounded-full animate-pulse"></div>
                       </div>
                     </div>
-                    <span className="ml-3 text-blue-500 dark:text-blue-300 font-semibold">
+                    <span className="ml-3 text-custom-accent font-semibold">
                       Loading users...
                     </span>
                   </div>
                 )}
                 {error && (
-                  <div className="text-center text-red-500 dark:text-red-400 mb-2 font-medium">
+                  <div className="text-center text-red-500 mb-2 font-medium">
                     {error}
                   </div>
                 )}
@@ -189,7 +186,7 @@ function App() {
                   {filteredUsers.map((user) => (
                     <li
                       key={user.id}
-                      className="flex items-center bg-white/80 dark:bg-gray-800 shadow hover:shadow-xl transition-shadow border border-gray-100 dark:border-gray-700 rounded-xl p-3 sm:p-4 cursor-pointer hover:bg-blue-50 dark:hover:bg-gray-700 group"
+                      className="flex items-center bg-custom-secondary shadow hover:shadow-custom transition-shadow border border-custom rounded-xl p-3 sm:p-4 cursor-pointer hover:bg-custom-primary group"
                       onClick={() => {
                         navigate(`/users/${user.id}`);
                       }}
@@ -230,13 +227,13 @@ function App() {
                       <img
                         src={user.image}
                         alt={user.firstName}
-                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full mr-4 sm:mr-5 border-2 border-blue-200 dark:border-blue-400 group-hover:border-blue-400 transition-all"
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full mr-4 sm:mr-5 border-2 border-custom group-hover:border-custom-accent transition-all"
                       />
                       <div className="min-w-0">
-                        <div className="font-bold text-base sm:text-lg text-blue-800 dark:text-blue-200 group-hover:text-blue-600 dark:group-hover:text-blue-300">
+                        <div className="font-bold text-base sm:text-lg text-custom-primary group-hover:text-custom-accent">
                           {user.firstName} {user.lastName}
                         </div>
-                        <div className="text-gray-500 dark:text-gray-400 group-hover:text-blue-400 dark:group-hover:text-blue-300 truncate max-w-[180px] sm:max-w-none">
+                        <div className="text-custom-muted group-hover:text-custom-accent truncate max-w-[180px] sm:max-w-none">
                           {user.email}
                         </div>
                       </div>
@@ -247,17 +244,17 @@ function App() {
                   <button
                     onClick={() => dispatch(setPage(page - 1))}
                     disabled={page <= 1 || loading}
-                    className="w-full sm:w-auto px-4 sm:px-5 py-2 bg-blue-500 text-white rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-semibold shadow hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800"
+                    className="w-full sm:w-auto px-4 sm:px-5 py-2 bg-custom-accent bg-custom-accent-hover text-white rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-semibold shadow"
                   >
                     &lt; Prev
                   </button>
-                  <span className="text-gray-700 dark:text-gray-200 font-medium order-first sm:order-none w-full text-center sm:w-auto">
+                  <span className="text-custom-secondary font-medium order-first sm:order-none w-full text-center sm:w-auto">
                     Page {page} of {totalPages}
                   </span>
                   <button
                     onClick={() => dispatch(setPage(page + 1))}
                     disabled={page >= totalPages || loading}
-                    className="w-full sm:w-auto px-4 sm:px-5 py-2 bg-blue-500 text-white rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-semibold shadow hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800"
+                    className="w-full sm:w-auto px-4 sm:px-5 py-2 bg-custom-accent bg-custom-accent-hover text-white rounded-lg disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-semibold shadow"
                   >
                     Next &gt;
                   </button>
